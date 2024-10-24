@@ -1,49 +1,111 @@
-total_grades = int(input('Enter the total of your grades: '))
-grades = input('Enter your grades: ').split() # Converting string into list
-grade_list = list(map(int, grades)) # Converting list with string number to list with int number
+from os import system
+import time
 
-# Creating dictionary so we can easily access and working with elements
+name = input('Enter your name: ')
+last_name = input('Enter your surname: ')
+certificate = int(input('Do you have certificate? : \n'
+                    '1 - avaliable \n'
+                    '0 - not avaliable \n'
+                    'Enter your answer only with number: '))
 
-grades_dic = {
-    'A' : 0,
-    'B' : 0,
-    'C' : 0,
-    'D' : 0,
-    'F' : 0
-}
+ort = int(input('Enter your score on ORT: '))
+english_level = input('Enter your English language proficiency level: \n'
+                    '1 - Beginner / Elementary \n'
+                    '2 - Pre-Intermediate \n'
+                    '3 - Intermediate \n'
+                    '4 - Upper-Intermediate \n'
+                    '5 - Advanced \n'
+                    '6 - Proficient \n'
+                    'Enter your level: ')
 
-# # We are using For loops so we can go through every elements in the list
+clearScreen = system('cls')
+     
+if certificate in range(0,2):
+    certBoo = bool(certificate)
 
-# ''' Using method range(from 90 to 100) find elements from 90 to 100. If we set 1 to 10, this method will count from 1 to 9
-# That's why are counting from 90 to 101
-# '''
-for x in range(90, 101):
-# 	''' Method count() counting the same elements in the list.
-# 		And then we adding this information to variable A
-# 	'''
+    def selectFaculty():
+        faculities = print('Choose your faculity: \n'
+                        '1 - Computer Engineering 2500$ \n'
+                        '2 - Artificial Intelligence 2200$ \n'
+                        '3 - Psychology 1900$ \n'
+                        '4 - Journalism 1700$ \n'
+                        '5 - International Relations 2200$ \n'
+                        '6 - Law 1800$ \n'
+                        '7 - Management 2200$ \n'
+                        '8 - Medicine 3300$ \n')
 
-    # Taking key and value from the dictionary
-	grades_dic['A'] += grade_list.count(x)
+        chosenProgram = int(input('Enter the number: '))
 
-for x in range(75, 90):
-	grades_dic['B'] += grade_list.count(x)
+        facultyTuitionCosts = {
+            1: ('Computer Engineering', 2500),
+            2: ('Artificial Intelligence', 2200),
+            3: ('Psychology', 1900),
+            4: ('Journalism', 1700),
+            5: ('International Relations', 2200),
+            6: ('Law', 1800),
+            7: ('Management', 2200),
+            8: ('Medicine', 3300),
+        }
 
-for x in range(60, 75):
-	grades_dic['C'] += grade_list.count(x)
+        choice = facultyTuitionCosts[chosenProgram]
+        clearScreen = system('cls')
 
-for x in range(50, 60):
-	grades_dic['D'] += grade_list.count(x)
+        if(choice[0] and 145 <= ort <= 155):
+            percentage = round((choice[1] * 5) / 100)
+            total = choice[1] - percentage
+            print(f'Dear {name} {last_name}, we congratulate you! You have been admitted to the {choice[0]} program at Ala-Too International University. \n'+
+            f'The cost of your tuition with a 5% discount will be {total}$ per year.')
 
-for x in range(1, 50):
-	grades_dic['F'] += grade_list.count(x)
+        elif(choice[0] and 156 <= ort <= 174):
+            percentage = round((choice[1] * 10) / 100)
+            total = choice[1] - percentage
+            print(f'Dear {name} {last_name}, we congratulate you! You have been admitted to the {choice[0]} program at Ala-Too International University. \n' +
+            f'The cost of your tuition with a 10% discount will be {total}$ per year.')
 
+        elif(choice[0] and 175 <= ort <= 199):
+            percentage = round((choice[1] * 25) / 100)
+            total = choice[1] - percentage
+            print(f'Dear {name} {last_name}, we congratulate you! You have been admitted to the {choice[0]} program at Ala-Too International University. \n' +
+            f'The cost of your tuition with a 25% discount will be {total}$ per year.')
 
-# Bonus
-# Going through the dictionary taking key and value so we can work with the exact element we want
-for key, value in grades_dic.items():
-    percentage = round((value / total_grades) * 100, 2)
+        elif(choice[0] and 200 <= ort <= 209):
+            percentage = round((choice[1] * 50) / 100)
+            total = choice[1] - percentage
+            print(f'Dear {name} {last_name}, we congratulate you! You have been admitted to the {choice[0]} program at Ala-Too International University. \n' +
+            f'The cost of your tuition with a 50% discount will be {total}$ per year.')
 
-    if value == 1:
-        print(f'{key}: {value} grade {percentage}%')
-    else:
-        print(f'{key}: {value} grades {percentage}%')
+        elif(choice[0] and 210 <= ort <= 218):
+            percentage = round((choice[1] * 75) / 100)
+            total = choice[1] - percentage
+            print(f'Dear {name} {last_name}, we congratulate you! You have been admitted to the {choice[0]} program at Ala-Too International University. \n' +
+            f'The cost of your tuition with a 75% discount will be {total}$ per year.')
+
+        elif(choice[0] and 219 <= ort <= 240):
+            print(f'Dear {name} {last_name}, we congratulate you! You have been admitted to the {choice[0]} program at Ala-Too International University. \n' +
+            f'The cost of your tuition with a 100% discount will be 0$ per year.')
+
+        else:
+            print(f'Dear {name} {last_name}, we congratulate you! You have been admitted to the {choice[0]} program at Ala-Too International University. \n' +
+            f'The cost of your tuition will be {choice[1]}$ per year.')
+
+    def check_enrollment(): 
+        if(certBoo == False):
+            print('You did not enroll because you do not own a certificate')
+        elif(ort < 110):
+            print('You did not enroll because your ORT score is not enough')
+        
+
+        elif(certBoo == True and ort >= 110 and english_level == '1' or english_level == '2'):
+            print('Take a one-year preparatory English language course (Foundation Course AIU) at the university.' +
+            'Then next year, after completing that course, you will be able to enroll the university')
+
+        else:
+            print('Your applicant is recommended for admssion to university')
+            time.sleep(1)
+            clearScreen = system('cls')
+            selectFaculty()
+    
+    check_enrollment()
+
+else:
+    print('Choose between 0 or 1')
