@@ -1,4 +1,4 @@
-фtotal_grades = int(input('Enter the total of your grades: '))
+total_grades = int(input('Enter the total of your grades: '))
 grades = input('Enter your grades: ').split() # Converting string into list
 grade_list = list(map(int, grades)) # Converting list with string number to list with int number
 
